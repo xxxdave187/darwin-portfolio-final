@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Serif+JP:wght@400;600;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 40 10% 92%;
+    --card: 0 0% 6%;
+    --card-foreground: 40 10% 92%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 40 10% 92%;
+    --primary: 4 90% 48%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 40 10% 92%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 4 90% 48%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 16%;
+    --input: 0 0% 18%;
+    --ring: 4 90% 48%;
+    --radius: 0px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: #d61f1f;
+    color: #fff;
+  }
+}
+
+/* ---------- typography helpers ---------- */
+.font-display {
+  font-family: 'DotGothic16', 'Shippori Mincho', sans-serif;
+  letter-spacing: 0.04em;
+}
+.font-jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+}
+.font-mono2 {
+  font-family: 'Space Mono', monospace;
+}
+
+/* ---------- textures & backgrounds ---------- */
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+.dot-bg {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px);
+  background-size: 10px 10px;
+}
+.noise-veil::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 0%, transparent 40%, rgba(0, 0, 0, 0.75) 100%);
+}
+
+/* rising sun disc */
+.sun-disc {
+  background: radial-gradient(circle, #c1171c 0%, #8f0f13 55%, #5c090c 100%);
+  box-shadow: 0 0 120px rgba(193, 23, 28, 0.45);
+}
+
+/* ---------- brush divider ---------- */
+.brush-line {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #c1171c 12%, #c1171c 88%, transparent);
+}
+
+/* ---------- marquee ---------- */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* ---------- reveal on scroll ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- katana loader ---------- */
+@keyframes draw-sword {
+  0%   { transform: translateX(0); }
+  8%   { transform: translateX(12px); }
+  60%  { transform: translateX(-440px); }
+  100% { transform: translateX(-440px); }
+}
+@keyframes saya-move {
+  0%   { transform: translateX(0); }
+  8%   { transform: translateX(-12px); }
+  60%  { transform: translateX(700px); }
+  100% { transform: translateX(700px); }
+}
+@keyframes gleam {
+  0%, 52% { opacity: 0; transform: translateX(-30%) scaleX(0.2); }
+  63% { opacity: 1; transform: translateX(0) scaleX(1); }
+  100% { opacity: 0; transform: translateX(30%) scaleX(0.2); }
+}
+@keyframes flash-red {
+  0%, 60% { opacity: 0; }
+  66% { opacity: 0.55; }
+  100% { opacity: 0; }
+}
+@keyframes slash {
+  0%, 62% { opacity: 0; clip-path: inset(0 100% 0 0); }
+  68% { opacity: 1; clip-path: inset(0 0 0 0); }
+  84% { opacity: 1; clip-path: inset(0 0 0 100%); }
+  100% { opacity: 0; clip-path: inset(0 0 0 100%); }
+}
+@keyframes loader-out {
+  to { opacity: 0; visibility: hidden; }
+}
+.katana-blade-group {
+  animation: draw-sword 3.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+.katana-saya {
+  animation: saya-move 3.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+.loader-gleam {
+  animation: gleam 3.4s ease-out forwards;
+}
+.loader-flash {
+  animation: flash-red 3.4s linear forwards;
+}
+.loader-slash {
+  animation: slash 3.4s linear forwards;
+}
+.loader-done {
+  animation: loader-out 0.6s ease forwards;
+}
+
+/* ---------- pulse for status dot ---------- */
+@keyframes soft-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.animate-soft-pulse {
+  animation: soft-pulse 2s ease-in-out infinite;
+}
+
+/* ---------- animated section backgrounds ---------- */
+
+/* slowly panning grid */
+@keyframes grid-pan {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 56px 56px, 56px 56px; }
+}
+.grid-drift {
+  animation: grid-pan 6s linear infinite;
+}
+@keyframes grid-pan-slow {
+  from { background-position: 0 0; }
+  to { background-position: 10px 10px; }
+}
+.dot-drift {
+  animation: grid-pan-slow 8s linear infinite;
+}
+
+/* rising sun breathing glow */
+@keyframes sun-pulse {
+  0%, 100% {
+    box-shadow: 0 0 120px rgba(193, 23, 28, 0.4);
+    transform: translateY(-50%) scale(1);
+  }
+  50% {
+    box-shadow: 0 0 190px rgba(193, 23, 28, 0.65);
+    transform: translateY(-50%) scale(1.035);
+  }
+}
+.sun-disc {
+  animation: sun-pulse 5.5s ease-in-out infinite;
+}
+
+/* drifting fog / mist band */
+@keyframes mist-drift {
+  from { transform: translateX(-18%); }
+  to { transform: translateX(18%); }
+}
+.mist-band {
+  background: radial-gradient(ellipse 60% 100% at 50% 50%, rgba(255, 255, 255, 0.05), transparent 70%);
+  filter: blur(30px);
+  animation: mist-drift 14s ease-in-out infinite alternate;
+}
+.mist-band-red {
+  background: radial-gradient(ellipse 55% 100% at 50% 50%, rgba(193, 23, 28, 0.14), transparent 70%);
+  filter: blur(40px);
+  animation: mist-drift 19s ease-in-out infinite alternate-reverse;
+}
+
+/* moving diagonal stripes (portfolio) */
+@keyframes stripes-move {
+  from { background-position: 0 0; }
+  to { background-position: 120px 0; }
+}
+.stripes-move {
+  background-image: repeating-linear-gradient(
+    -55deg,
+    transparent 0 26px,
+    rgba(255, 255, 255, 0.028) 26px 28px
+  );
+  animation: stripes-move 9s linear infinite;
+}
+
+/* slowly floating big kanji watermarks */
+@keyframes kanji-float {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-22px) rotate(2deg); }
+}
+.kanji-float {
+  animation: kanji-float 11s ease-in-out infinite;
+}
+
+/* thin red scanline sweeping down sections */
+@keyframes scan-sweep {
+  0% { top: -10%; opacity: 0; }
+  8% { opacity: 0.5; }
+  50% { opacity: 0.25; }
+  92% { opacity: 0.5; }
+  100% { top: 110%; opacity: 0; }
+}
+.scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 90px;
+  background: linear-gradient(to bottom, transparent, rgba(193, 23, 28, 0.06), transparent);
+  animation: scan-sweep 9s linear infinite;
+  pointer-events: none;
+}
