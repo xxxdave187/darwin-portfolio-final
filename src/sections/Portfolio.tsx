@@ -129,15 +129,18 @@ export default function Portfolio() {
                       <p className="mt-5 text-sm leading-relaxed text-white/55">{p.description}</p>
 
                       <a
-                        href={p.link}
-                        className="font-mono2 group mt-7 inline-flex items-center gap-3 border border-white/20 px-6 py-3 text-[11px] tracking-[0.3em] text-white/80 transition-colors hover:border-[#c1171c] hover:text-[#c1171c]"
-                      >
-                        VIEW PROJECT
-                        <ArrowUpRight
-                          size={14}
-                          className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                        />
-                      </a>
+                        
+  href={p.link}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="font-mono2 group mt-7 inline-flex items-center gap-3 border border-white/20 px-6 py-3 text-[11px] tracking-[0.3em] text-white/80 transition-colors hover:border-[#c1171c] hover:text-[#c1171c]"
+>
+  VIEW PROJECT
+  <ArrowUpRight
+    size={14}
+    className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+  />
+</a>
                     </div>
                   </div>
                 </Reveal>
