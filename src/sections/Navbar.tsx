@@ -38,10 +38,6 @@ export default function Navbar() {
               <span className="block h-px w-0 bg-[#c1171c] transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
-          <span className="font-mono2 flex items-center gap-2 border border-white/15 px-3 py-1.5 text-[10px] tracking-[0.2em] text-white/70">
-            <span className="animate-soft-pulse h-1.5 w-1.5 rounded-full bg-[#c1171c]" />
-            {site.availability}
-          </span>
         </nav>
 
         <button

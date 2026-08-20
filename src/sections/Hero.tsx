@@ -45,7 +45,7 @@ export default function Hero() {
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-5 pb-24 pt-32 md:px-10">
         <p className="font-mono2 mb-6 flex items-center gap-3 text-xs tracking-[0.35em] text-[#c1171c]">
           <span className="inline-block h-px w-12 bg-[#c1171c]" />
-          こんにちは、私は
+
         </p>
 
         <h1 className="font-display text-5xl leading-[0.95] text-white sm:text-7xl lg:text-8xl">
@@ -83,7 +83,7 @@ export default function Hero() {
 
         <div className="font-mono2 mt-12 flex items-center gap-2 text-[11px] tracking-[0.25em] text-white/40">
           <MapPin size={12} className="text-[#c1171c]" />
-          {site.location.toUpperCase()} — {site.availability}
+          {site.location.toUpperCase()}
         </div>
       </div>
 
