@@ -37,7 +37,7 @@ export const about = {
     { value: "∞", label: "ALWAYS LEARNING" },
   ],
   // Place your real resume PDF at /public/resume.pdf — the button downloads it
-  resumeFile: "/resume.pdf",
+  resumeFile: "/Darwin_Consigo_Resume.pdf",
 };
 
 export type Project = {
